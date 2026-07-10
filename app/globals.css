@@ -213,6 +213,8 @@ h1,h2,h3{font-family:var(--serif); font-weight:600; letter-spacing:.2px; color:v
   color:var(--ink); font-family:var(--serif); font-size:24px;
 }
 #dropInner span{font-size:14px; letter-spacing:.2px}
+.capture-actions{display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:6px}
+@media(max-width:520px){ .capture-actions{width:100%; padding:0 24px} .capture-actions button{flex:1} }
 .preview-img{width:100%; max-height:460px; object-fit:contain; display:block; background:#fff}
 .ocr-status{display:flex; align-items:center; gap:11px; color:var(--text-2); margin:22px 0; font-size:14px}
 .spinner{
