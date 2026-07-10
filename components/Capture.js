@@ -43,7 +43,8 @@ export default function Capture({ uid, onSaved }) {
 
   const reset = () => {
     setBlob(null); setPreview(""); setShowForm(false);
-    if (fileRef.current) fileRef.current.value = "";
+    if (cameraRef.current) cameraRef.current.value = "";
+    if (galleryRef.current) galleryRef.current.value = "";
   };
 
   const save = async (e) => {
