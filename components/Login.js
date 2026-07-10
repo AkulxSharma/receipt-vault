@@ -30,7 +30,7 @@ export default function Login() {
           Continue with Google
         </button>
         <p className="fineprint">Free to use. Your receipts stay private to your account.</p>
-        <p className="login-links"><Link href="/privacy">Privacy Policy</Link></p>
+        <p className="login-links"><a href="/privacy.html">Privacy Policy</a></p>
       </div>
       <footer className="login-foot">A portfolio project, running on the Firebase free tier.</footer>
     </section>
