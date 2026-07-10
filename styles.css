@@ -49,6 +49,21 @@ h1,h2,h3{font-family:var(--serif); font-weight:600; letter-spacing:.2px}
 .wordmark .vault{color:var(--gold)}
 
 /* ======================================================================
+   AUTH SPLASH (prevents the login screen flashing before auth resolves)
+   ====================================================================== */
+.auth-splash{
+  position:fixed; inset:0; z-index:100;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;
+  background:
+    radial-gradient(1100px 520px at 50% -8%, rgba(200,164,92,.10) 0%, transparent 55%),
+    var(--bg);
+}
+.auth-splash .brand-mark{
+  font-family:var(--serif); font-size:16px; letter-spacing:5px;
+  text-transform:uppercase; color:var(--gold);
+}
+
+/* ======================================================================
    LOGIN
    ====================================================================== */
 .login-view{

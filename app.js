@@ -75,6 +75,8 @@ $("googleBtn").onclick = async ()=>{
 $("logoutBtn").onclick = ()=> signOut(auth);
 
 onAuthStateChanged(auth, (user)=>{
+  const splash = $("authSplash");
+  if (splash) splash.classList.add("hidden");
   currentUser = user;
   if (user){
     loginView.classList.add("hidden");
@@ -165,12 +167,15 @@ function parseReceipt(text){
     if (letters.length >= 3){ brand = titleCase(l.replace(/[^a-zA-Z0-9&' ]/g,"").trim()); break; }
   }
 
-  // AMOUNT: prefer a line containing a total keyword; else largest money value
-  const moneyRe = /(\d+[.,]\d{2})/g;
+  // AMOUNT: prefer the real total. Match total-style lines but skip "subtotal",
+  // and take the LAST such line, since a grand total sits below subtotal/tax.
+  const hasMoney = (l)=>/\d+[.,]\d{2}/.test(l);
+  const isTotal  = (l)=>/(grand\s*total|amount\s*due|balance\s*due|\btotal\b)/i.test(l);
+  const isSubtotal = (l)=>/sub[\s-]*total/i.test(l);
   let amount = "";
-  const totalLine = lines.find(l=>/total|amount due|balance due|grand total/i.test(l) && moneyRe.test(l));
-  if (totalLine){
-    const m = totalLine.match(/(\d+[.,]\d{2})/g);
+  const totalLines = lines.filter(l=> isTotal(l) && !isSubtotal(l) && hasMoney(l));
+  if (totalLines.length){
+    const m = totalLines[totalLines.length-1].match(/(\d+[.,]\d{2})/g);
     if (m) amount = m[m.length-1].replace(",",".");
   }
   if (!amount){

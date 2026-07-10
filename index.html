@@ -12,8 +12,14 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- ───────── AUTH SPLASH (shown until Firebase resolves the session) ───────── -->
+  <section id="authSplash" class="auth-splash">
+    <div class="brand-mark">Receipt&nbsp;Vault</div>
+    <span class="spinner"></span>
+  </section>
+
   <!-- ───────── LOGIN VIEW ───────── -->
-  <section id="loginView" class="login-view">
+  <section id="loginView" class="login-view hidden">
     <div class="login-card">
       <div class="brand-mark">Receipt&nbsp;Vault</div>
       <h1>Every receipt, quietly kept.</h1>
