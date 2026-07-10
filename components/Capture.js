@@ -81,16 +81,24 @@ export default function Capture({ uid, onSaved }) {
         amount and date are read for you. Look them over, correct anything that came out wrong, then save.
       </p>
 
-      <label className="capture-drop">
-        <input ref={fileRef} type="file" accept="image/*" capture="environment" hidden onChange={onFile} />
+      <div className="capture-drop">
+        {/* camera input forces the back camera on phones; gallery input (no
+            capture attr) opens the photo library instead. Desktop shows a file
+            picker for both. */}
+        <input ref={cameraRef} type="file" accept="image/*" capture="environment" hidden onChange={onFile} />
+        <input ref={galleryRef} type="file" accept="image/*" hidden onChange={onFile} />
         {!preview && (
           <div id="dropInner">
             <div className="drop-frame">+</div>
-            <span>Open the camera or choose a photo</span>
+            <span>Snap a new receipt or pick one from your photos</span>
+            <div className="capture-actions">
+              <button type="button" className="primary-btn" onClick={() => cameraRef.current?.click()}>Take a photo</button>
+              <button type="button" className="ghost-btn" onClick={() => galleryRef.current?.click()}>Choose from gallery</button>
+            </div>
           </div>
         )}
         {preview && <img src={preview} className="preview-img" alt="receipt preview" />}
-      </label>
+      </div>
 
       {ocr && <div className="ocr-status"><span className="spinner" /> Reading the receipt…</div>}
 
