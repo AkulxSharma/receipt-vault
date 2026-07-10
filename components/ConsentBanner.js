@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 
 // Essential cookies (Firebase auth/session) always run. This banner only records
 // whether the visitor also allows non-essential cookies, and remembers the choice.
