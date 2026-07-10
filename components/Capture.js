@@ -8,7 +8,8 @@ import { useToast } from "./Toast";
 
 export default function Capture({ uid, onSaved }) {
   const toast = useToast();
-  const fileRef = useRef(null);
+  const cameraRef = useRef(null);
+  const galleryRef = useRef(null);
   const [preview, setPreview] = useState("");
   const [blob, setBlob] = useState(null);
   const [ocr, setOcr] = useState(false);
